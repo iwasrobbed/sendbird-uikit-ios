@@ -15,16 +15,8 @@ public extension UIView {
     /// - Returns: nib object
     @objc static func sbu_loadNib() -> UINib {
         let nibName = String(NSStringFromClass(self).split(separator: ".").last ?? "")
-        let nib = UINib(nibName: nibName, bundle: SendbirdBundle)
+        let nib = UINib(nibName: nibName, bundle: Bundle(for: self))
         return nib
-    }
-
-    /// This loads the view with the nib in the SendBird UIKit bundle.
-    /// - Returns: Loaded `UIView` object 
-    @objc static func sbu_loadViewFromNib() -> UIView {
-        let nib = self.sbu_loadNib()
-        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        return view
     }
 }
 
