@@ -172,8 +172,8 @@ class SBUFileViewer: SBUBaseViewController, UIScrollViewDelegate {
         // Bottom View
         if let bottomView = self.bottomView as? BottomView {
 
-            let isCurrnetUser = self.fileMessage?.sender?.userId == SBUGlobals.CurrentUser?.userId
-            bottomView.deleteButton.isHidden = !isCurrnetUser
+            // let isCurrnetUser = self.fileMessage?.sender?.userId == SBUGlobals.CurrentUser?.userId
+            bottomView.deleteButton.isHidden = true // !isCurrnetUser
 
             bottomView.downloadButton.addTarget(self,
                                                 action: #selector(onClickDownload(sender:)),
