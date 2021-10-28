@@ -78,9 +78,9 @@ enum SBUIconSetType: String, Hashable {
     }
     
     // MARK: - Image handling
-    
-    private static let bundle = Bundle(identifier: "com.sendbird.uikit")
-    
+
+    private static let bundle = Bundle(url: Bundle(for: SBUIconSet.self).url(forResource: "SendbirdBundle", withExtension: "bundle")!)!
+
     func load(tintColor: UIColor? = nil) -> UIImage {
         let image = UIImage(named: self.rawValue, in: SBUIconSetType.bundle, compatibleWith: nil)!
         guard let tintColor = tintColor else { return image }
