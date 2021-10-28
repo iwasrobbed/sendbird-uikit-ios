@@ -8,6 +8,8 @@
 
 import UIKit
 
+let SendbirdBundle = Bundle(url: Bundle(for: SBUIconSet.self).url(forResource: "SendbirdBundle", withExtension: "bundle")!)!
+
 enum SBUIconSetType: String, Hashable {
     case iconAdd
     case iconBack
@@ -79,10 +81,8 @@ enum SBUIconSetType: String, Hashable {
     
     // MARK: - Image handling
 
-    private static let bundle = Bundle(url: Bundle(for: SBUIconSet.self).url(forResource: "SendbirdBundle", withExtension: "bundle")!)!
-
     func load(tintColor: UIColor? = nil) -> UIImage {
-        let image = UIImage(named: self.rawValue, in: SBUIconSetType.bundle, compatibleWith: nil)!
+        let image = UIImage(named: self.rawValue, in: SendbirdBundle, compatibleWith: nil)!
         guard let tintColor = tintColor else { return image }
         
         return image.sbu_with(tintColor: tintColor)

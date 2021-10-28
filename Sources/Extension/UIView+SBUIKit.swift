@@ -15,7 +15,7 @@ public extension UIView {
     /// - Returns: nib object
     @objc static func sbu_loadNib() -> UINib {
         let nibName = String(NSStringFromClass(self).split(separator: ".").last ?? "")
-        let nib = UINib(nibName: nibName, bundle: Bundle(identifier: "com.sendbird.uikit"))
+        let nib = UINib(nibName: nibName, bundle: SendbirdBundle)
         return nib
     }
 

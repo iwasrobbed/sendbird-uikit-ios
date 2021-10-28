@@ -12,7 +12,7 @@ import UIKit
 extension UIViewController {
     // Not using now
     @objc func sbu_loadViewFromNib() {
-        guard let view = Bundle(identifier: "com.sendbird.uikit")?.loadNibNamed(
+        guard let view = SendbirdBundle.loadNibNamed(
             String(describing: type(of: self)),
             owner: self,
             options: nil
