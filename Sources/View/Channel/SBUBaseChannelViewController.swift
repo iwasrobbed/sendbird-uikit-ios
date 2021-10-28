@@ -799,7 +799,7 @@ open class SBUBaseChannelViewController: SBUBaseViewController {
     func createMenuItems(message: SBDBaseMessage,
                          types: [MessageMenuItem],
                          isMediaViewOverlaying: Bool) -> [SBUMenuItem] {
-        let items: [SBUMenuItem] = types.map {
+        let items: [SBUMenuItem] = types.compactMap {
             switch $0 {
             case .copy:
                 return SBUMenuItem(
@@ -815,36 +815,36 @@ open class SBUBaseChannelViewController: SBUBaseViewController {
                     let pasteboard = UIPasteboard.general
                     pasteboard.string = userMessage.message
                 }
-            case .edit:
-                return SBUMenuItem(
-                    title: SBUStringSet.Edit,
-                    color: self.theme.menuTextColor,
-                    image: SBUIconSetType.iconEdit.image(
-                        with: SBUTheme.componentTheme.alertButtonColor,
-                        to: SBUIconSetType.Metric.iconActionSheetItem
-                    )
-                ) { [weak self] in
-                    guard let self = self else { return }
-                    guard let userMessage = message as? SBDUserMessage else { return }
-                    
-                    if self.baseChannel?.isFrozen == false {
-                        self.setEditMode(for: userMessage)
-                    } else {
-                        SBULog.info("This channel is frozen")
-                    }
-                }
-            case .delete:
-                return SBUMenuItem(
-                    title: SBUStringSet.Delete,
-                    color: self.theme.menuTextColor,
-                    image: SBUIconSetType.iconDelete.image(
-                        with: SBUTheme.componentTheme.alertButtonColor,
-                        to: SBUIconSetType.Metric.iconActionSheetItem
-                    )
-                ) { [weak self] in
-                    guard let self = self else { return }
-                    self.deleteMessage(message: message)
-                }
+//            case .edit:
+//                return SBUMenuItem(
+//                    title: SBUStringSet.Edit,
+//                    color: self.theme.menuTextColor,
+//                    image: SBUIconSetType.iconEdit.image(
+//                        with: SBUTheme.componentTheme.alertButtonColor,
+//                        to: SBUIconSetType.Metric.iconActionSheetItem
+//                    )
+//                ) { [weak self] in
+//                    guard let self = self else { return }
+//                    guard let userMessage = message as? SBDUserMessage else { return }
+//
+//                    if self.baseChannel?.isFrozen == false {
+//                        self.setEditMode(for: userMessage)
+//                    } else {
+//                        SBULog.info("This channel is frozen")
+//                    }
+//                }
+//            case .delete:
+//                return SBUMenuItem(
+//                    title: SBUStringSet.Delete,
+//                    color: self.theme.menuTextColor,
+//                    image: SBUIconSetType.iconDelete.image(
+//                        with: SBUTheme.componentTheme.alertButtonColor,
+//                        to: SBUIconSetType.Metric.iconActionSheetItem
+//                    )
+//                ) { [weak self] in
+//                    guard let self = self else { return }
+//                    self.deleteMessage(message: message)
+//                }
             case .save:
                 return SBUMenuItem(
                     title: SBUStringSet.Save,
@@ -859,6 +859,7 @@ open class SBUBaseChannelViewController: SBUBaseViewController {
                     
                     SBUDownloadManager.save(fileMessage: fileMessage, parent: self)
                 }
+            default: return nil
             }
         }
         
