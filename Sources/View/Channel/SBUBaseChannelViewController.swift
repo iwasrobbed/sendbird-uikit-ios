@@ -19,6 +19,9 @@ open class SBUBaseChannelViewController: SBUBaseViewController {
     // MARK: - Properties (View)
     
     public private(set) lazy var tableView = UITableView()
+
+    /// Offset used to adjust the message input view's bottom constraint when a keyboard is shown
+    public var messageInputViewKeyboardBottomOffset: CGFloat = 0
     
     public lazy var messageInputView: SBUMessageInputView = SBUMessageInputView()
     
@@ -398,7 +401,7 @@ open class SBUBaseChannelViewController: SBUBaseViewController {
             tabBarHeight = tabBarController?.tabBar.frame.height ?? 0.0
         }
         
-        self.messageInputViewBottomConstraint.constant = -(keyboardHeight-tabBarHeight)
+        self.messageInputViewBottomConstraint.constant = -(keyboardHeight-tabBarHeight-messageInputViewKeyboardBottomOffset)
         self.view.layoutIfNeeded()
     }
     
