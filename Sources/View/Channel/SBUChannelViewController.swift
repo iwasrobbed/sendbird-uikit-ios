@@ -1281,7 +1281,6 @@ open class SBUChannelViewController: SBUBaseChannelViewController {
                 guard let userMessage = message as? SBDUserMessage else { return }
                 let pasteboard = UIPasteboard.general
                 pasteboard.string = userMessage.message
-
 //            case .delete:
 //                self.deleteMessage(message: message)
 //
@@ -1292,10 +1291,10 @@ open class SBUChannelViewController: SBUBaseChannelViewController {
 //                } else {
 //                    SBULog.info("This channel is frozen")
 //                }
-
             case .save:
                 guard let fileMessage = message as? SBDFileMessage else { return }
                 SBUDownloadManager.save(fileMessage: fileMessage, parent: self)
+            default: ()
             }
         }
 
