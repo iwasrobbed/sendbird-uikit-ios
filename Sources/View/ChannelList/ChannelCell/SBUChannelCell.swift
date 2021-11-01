@@ -119,6 +119,7 @@ public class SBUChannelCell: SBUBaseChannelCell {
         self.unreadCount
             .sbu_constraint(equalTo: self.contentView, trailing: -kSideMarging)
             .sbu_constraint(height: kUnreadCountSize)
+            .sbu_constraint_greaterThan(width: 30, priority: .defaultLow)
             .sbu_constraint_equalTo(topAnchor: self.lastUpdatedTimeLabel.bottomAnchor, top: 10)
             .sbu_constraint_greater(leadingAnchor: self.messageLabel.trailingAnchor, leading: 8)
         
